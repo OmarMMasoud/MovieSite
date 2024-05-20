@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.App{
+    height: 100vh;
+    background-color: #2B1F2F;
+    background-image: url(./imgs/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-family: "Poppins";
+}

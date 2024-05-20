@@ -1,0 +1,38 @@
+$mainC:#454367;
+nav{
+  //  background-color: green;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+.search {
+    position: relative;
+
+
+
+    input{
+        margin:2rem auto ;
+        padding: 0.6rem 2.5rem;
+        font-size: .875em;
+        border-radius: 50px;
+        border: none;
+        outline:none ;  
+        background-color: #D9D9D9;
+        width: 18rem;
+        text-transform: capitalize;
+    }
+    
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    pointer-events: none;
+    color:$mainC;
+    font-size: 1.2rem;
+  }
+
+  }
+  
