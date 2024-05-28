@@ -1,4 +1,25 @@
+$mainC:#454367;
+
+
 .cards{
- width: 90%;
- margin-inline: auto ;   
+ max-width: 90%;
+ margin: 3rem auto 0 ;   
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: space-around;
+}
+.card{
+   
+    img{
+        width: 10rem;
+        height:13rem ;
+        border-radius: 10px;
+
+        &:hover{
+            cursor: pointer;
+            transition: 0.30s ease-in;
+            border: 5px solid white;
+        }
+    }
 }
