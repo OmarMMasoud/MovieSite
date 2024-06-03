@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import '../style/cards.scss';
 
 function Card({ onCardClick }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [movieList, setMovieList] = useState([]);
+  const [detailsHidden, setDetailsHidden] = useState(true); // add this state
 
   useEffect(() => {
     setSearchTerm('marvel');
@@ -48,12 +48,12 @@ function Card({ onCardClick }) {
   };
 
   const handleCardClick = (movie) => {
-    
+    setDetailsHidden(false); // set detailsHidden to false on card click
     axios.get(`http://www.omdbapi.com/?i=${movie.id}&apikey=d40112b6`)
-   .then(response => {
+     .then(response => {
         onCardClick(response.data);
       })
-   .catch(err => {
+     .catch(err => {
         console.error(err);
       });
   };
