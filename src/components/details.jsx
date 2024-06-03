@@ -1,32 +1,47 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-import "../style/result.scss"
+import '../style/result.scss'
+const Details = ({ movie }) => {
+  const [showDetails, setShowDetails] = useState(true);
 
-function Details({ card }) {
-  if (!card) return null; // or display a loading message
+  useEffect(() => {
+    if (movie) {
+      document.querySelector('.details').classList.remove('hidden');
+    }
+  }, [movie]);
+
+  if (!movie) {
+    return null;
+  }
 
   return (
-    <div className="details">
-      <div className="mainInfo">
-        <img src={card.poster} alt="" className="poster" />
-        <h2 className="name">{card.name}</h2>
+    <div className={`details ${showDetails? '' : 'hidden'}`}>
+      <button className="close-button" onClick={() => setShowDetails(false)}>
+        X
+      </button>
+      <div className="head">
+      <img src={movie.Poster} alt={movie.Title} />
+      <h2>{movie.Title}</h2>
       </div>
-      <div className="seconderyInfo">
-        <div className="left">
-          <h3 className="overview">{card.overview}</h3>
-          <p className="year">{card.year}</p>
-          <p className="genres">{card.genres}</p>
-          <p className="country">{card.country}</p>
-        </div>
-        <div className="right">
-          <p className="vote">{card.vote}</p>
-          <p className="time">{card.time}</p>
-          <p className="budget">{card.budget}</p>
-          <p className="Awards">{card.awards}</p>
-        </div>
+      <p className='plot'>{movie.Plot}</p>
+
+      <div className="contentBody">
+      <div className="left">
+      <p> <strong>Released:</strong> {movie.Released}</p>
+      <p> <strong>Vote:</strong> {movie.imdbRating}</p>
+      <p> <strong>T:</strong> {movie.Type} </p>
+
+
+      </div>
+      <div className="right">
+      <p> <strong>Runtime:</strong> {movie.Runtime} minutes</p>
+      <p> <strong>Budget:</strong> ${movie.BoxOffice}</p>
+      <p> <strong>Awards:</strong> {movie.Awards}</p>
+
+      </div>
       </div>
     </div>
   );
-}
+};
 
 export default Details;

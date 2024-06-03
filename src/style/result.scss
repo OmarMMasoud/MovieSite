@@ -1,3 +1,5 @@
+$mainC:#454367;
+
 .details{
     display: block;
     z-index: 1010;
@@ -13,10 +15,71 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #000000;
+    background-color: $mainC;
     border: 1px solid #ffffff;
     width: max(30vw,20rem);
     height: max(50vh,fit-content);
-
+    color: white;
     
 }
+
+.head{
+  width: 90%;
+  margin: 3rem auto;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-around;
+  align-items: center;
+
+  h2{
+    width: 60%;
+  }
+    img{
+    max-width: 8rem;}
+}
+.plot{
+  width: 90%;
+  margin: 1rem auto 2.5rem;
+  font-weight: 400;
+  text-align: left;
+}
+.contentBody{
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  .left{
+  display: flex;
+  flex-direction: column;
+  }
+  .right{
+    flex-direction: column;
+
+
+  }
+  }
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #e53935;
+    }
+  }
+  
+  .hidden {
+    display: none;
+  }
