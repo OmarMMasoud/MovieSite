@@ -1,6 +1,5 @@
 $mainC:#454367;
 nav{
-  //  background-color: green;
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -22,12 +21,14 @@ nav{
         background-color: $mainC;
         width: 18rem;
         text-transform: capitalize;
+        color: white;
     }
 
     button{
        border-radius:  0 50px 50px 0;
        padding: 0.65rem 0.6rem 0.6rem ;
        border: none;
+       color: $mainC;
        
     }
     
@@ -37,7 +38,7 @@ nav{
     transform: translateY(-50%);
     left: 10px;
     pointer-events: none;
-    color:$mainC;
+    color:white;
     font-size: 1.2rem;
   }
 

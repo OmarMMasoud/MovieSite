@@ -3,7 +3,6 @@ $mainC:#2B1F2F;
 .details{
     display: block;
     z-index: 1010;
-
     animation-duration: 0.7s;
     animation-delay: 2s;
     position: fixed;
@@ -15,7 +14,9 @@ $mainC:#2B1F2F;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: $mainC;
+    background-image: url(./imgs/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     border: 1px solid #ffffff;
     width: max(50vw,20rem);
     height: max(50vh,fit-content);
@@ -33,6 +34,7 @@ $mainC:#2B1F2F;
 
   h2{
     width: 60%;
+    font-size: 2rem;
   }
     img{
     max-width: 8rem;}
@@ -45,7 +47,7 @@ $mainC:#2B1F2F;
 }
 .contentBody{
     width: 90%;
-    margin: 1rem auto;
+    margin: 1rem auto 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
