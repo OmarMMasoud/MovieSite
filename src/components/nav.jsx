@@ -10,7 +10,6 @@ function Nav() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [movieDetails, setMovieDetails] = useState({});
-  const [showDetails, setShowDetails] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -97,15 +96,15 @@ function Nav() {
           >
             {movie.poster && <img src={movie.poster} alt="" className="img" />}
             {selectedMovie === movie && (
-              <div>
+              <div className='details'>
                 <div className="head">
-                <h2>{movieDetails.Poster}</h2>
+                <img src={movieDetails.Poster}/>
                 <h2>{movieDetails.Title}</h2>
                 </div>
 
                 <p className='plot'>{movieDetails.Plot}</p>
-                <div className="contentBody">
 
+                <div className="contentBody">
                 <div className="left">
                 <p><strong>Released:</strong> {movieDetails.Released}</p>
                 <p><strong>Vote:</strong> {movieDetails.imdbRating}</p>
