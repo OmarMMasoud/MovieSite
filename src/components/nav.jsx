@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-
 import { IoSearch } from "react-icons/io5";
 import logo from "../style/imgs/logo.png"
 import "../style/nav.scss"
+import "../style/result.scss";
 
 function Nav() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [movieDetails, setMovieDetails] = useState({});
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ function Nav() {
             movieData.push({
               title: movie.Title,
               poster: movie.Poster,
+              imdbID: movie.imdbID
             });
           });
         } else {
@@ -48,9 +51,32 @@ function Nav() {
     });
   };
 
+  const handleCardClick = (movie) => {
+    setSelectedMovie(movie);
+    fetchMovieDetails(movie.imdbID);
+  };
+
+  const fetchMovieDetails = (imdbID) => {
+    console.log(`Fetching movie details for ${imdbID}`);
+    axios.get(`http://www.omdbapi.com/?i=${imdbID}&apikey=d40112b6`)
+    .then(response => {
+      console.log(`Received movie details:`, response.data);
+      setMovieDetails(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  };
+
+  useEffect(() => {
+    if (selectedMovie) {
+      fetchMovieDetails(selectedMovie.imdbID);
+    }
+  }, [selectedMovie]);
+
   return (
     <nav>
-       <div className="logo"><img src={logo} alt="" /></div>
+      <div className="logo"><img src={logo} alt="" /></div>
       <form  className='search' onSubmit={handleSearch}>
         <IoSearch className='search-icon'/>
         <input
@@ -64,8 +90,36 @@ function Nav() {
       </form>
       <div className="cards">
         {searchResults.filter(movie => movie.poster!== 'N/A').map((movie, index) => (
-          <div className='card' key={index}>
+          <div
+            key={index}
+            className='card'
+            onClick={() => handleCardClick(movie)}
+          >
             {movie.poster && <img src={movie.poster} alt="" className="img" />}
+            {selectedMovie === movie && (
+              <div>
+                <div className="head">
+                <h2>{movieDetails.Poster}</h2>
+                <h2>{movieDetails.Title}</h2>
+                </div>
+
+                <p className='plot'>{movieDetails.Plot}</p>
+                <div className="contentBody">
+
+                <div className="left">
+                <p><strong>Released:</strong> {movieDetails.Released}</p>
+                <p><strong>Vote:</strong> {movieDetails.imdbRating}</p>
+                <p><strong>Type:</strong> {movieDetails.Type}</p>
+                </div>
+                
+                <div className="right">
+                <p><strong>Runtime:</strong> {movieDetails.Runtime} minutes</p>
+                <p><strong>Budget:</strong> ${movieDetails.BoxOffice}</p>
+                <p><strong>Awards:</strong> {movieDetails.Awards}</p>
+                </div>
+                </div>
+                </div>
+            )}
           </div>
         ))}
       </div>
